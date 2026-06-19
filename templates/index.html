@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PDF App" />
+  <link rel="manifest" href="/static/manifest.json" />
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png" />
+  <title>PDF Editor & Converter</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📄 PDF Editor, Viewer & Converter</h1>
+    <p class="sub">Open PDFs, annotate them, and convert other files into PDF. Installable on Android, iOS and Desktop.</p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>View PDF</h2>
+        <input type="file" id="pdfFile" accept="application/pdf" />
+        <button onclick="viewPdf()">Open PDF</button>
+        <div id="pdfInfo"></div>
+      </section>
+
+      <section class="card">
+        <h2>Convert to PDF</h2>
+        <input type="file" id="convertFile" accept=".docx,.csv,.txt,.md,.log,.png,.jpg,.jpeg,.bmp,.tiff,.webp" />
+        <p class="hint">Supports: DOCX, CSV, TXT, MD, PNG, JPG and more</p>
+        <button onclick="convertToPdf()">Convert</button>
+        <div id="convertResult"></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Edit PDF (Annotate)</h2>
+      <div class="toolbar">
+        <select id="modeSelect" onchange="setMode(this.value)">
+          <option value="text">Text</option>
+          <option value="rect">Rectangle</option>
+          <option value="highlight">Highlight</option>
+        </select>
+        <input id="textInput" type="text" placeholder="Type annotation text" />
+        <button onclick="saveEdits()">💾 Save Edited PDF</button>
+        <button onclick="clearAnnotations()" style="background:#6b7280">🗑 Clear</button>
+      </div>
+      <div id="annotationCount" style="font-size:13px;color:#4b5563;margin-bottom:8px;"></div>
+      <div id="viewer"></div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
